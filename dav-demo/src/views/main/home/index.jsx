@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import style from "../../../css/home.css"
 
 //通过connect这个中间件将props挂载上dispatch这个方法

@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{Suspense}from 'react';
 import { Router} from 'dva/router';
 
 
@@ -13,7 +13,10 @@ function RouterConfig({ history }) {
   
   return (
     <Router history={history}>
-      <RouteView children={RouteConfig}></RouteView>
+        <Suspense fallback={<div>loading...</div>}>
+            <RouteView children={RouteConfig}></RouteView>
+        </Suspense>
+      
       {/* <Switch>
         <Route path="/main" exact component={Main} />
         <Route path="/main/home" exact component={Home} />
