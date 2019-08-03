@@ -38,7 +38,7 @@ export default class Detail extends Component {
         let {id}=props.match.params;
         //通过结构出来的id向仓库筛选数据
         console.log(props.list,"getDerivedStateFromProps")
-        let opj=props.list.find(item=>item.id===id*1);
+        let opj=props.list.find(item=>item.id==id);
         console.log(opj);
         return {
             opj
@@ -53,7 +53,7 @@ Object.assign(Detail.prototype,{
         //如果不存在的话把其push进去存在修改num
         
        let buyList=this.props.buyList;
-       let index=buyList.findIndex(item=>item.id===this.state.opj.id*1);
+       let index=buyList.findIndex(item=>item.id==this.state.opj.id);
        if(index===-1){
            //不存在
            newOpj.num=1;

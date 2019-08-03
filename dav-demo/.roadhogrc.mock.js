@@ -8,8 +8,9 @@ import path from "path";
 
 const mock={}
 
-fs.readFileSync(path.join(__dirname+"/mock")).forEach(item=>{
-    if(item.match(/.js$/)){
+fs.readdirSync(path.join(__dirname+"/mock")).forEach(item=>{
+    console.log(item)
+    if(item.match(/\.js$/)){
         Object.assign(mock,require("./mock/"+item))
     }
 })
