@@ -4,8 +4,11 @@ module.exports={
         'list|12':[
             {
                 image:"@image(100x100,@color)",
-                
-                'id|+1':1,
+                id:"@id",
+                nickName:"@last",
+                phone:/^1[34578]\d{9}$/,
+                createTime:"@datetime",
+                isMale:"@boolean",
                 title:"@ctitle",
                 'price|12-25':1
             }

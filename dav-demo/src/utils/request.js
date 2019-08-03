@@ -1,5 +1,7 @@
 import fetch from 'dva/fetch';
 
+import qs from "querystring"
+
 function parseJSON(response) {
   return response.json();
 }
@@ -14,6 +16,19 @@ function checkStatus(response) {
   throw error;
 }
 
+function handleHeaders(options){
+  const headers=options.headers=options.headers?options.headers:{};
+  const defaultHeaders={
+    'Content-type':"application/x-www-form-urlencoded;charset=UTF-8",
+  }
+  options.headers=Object.assign({},defaultHeaders,headers);
+  if(options.method==="post"){
+    var body=options.body?options.body:{};
+    body=qs.stringify(body);
+    options.body=body;
+  }
+}
+
 /**
  * Requests a URL, returning a promise.
  *
@@ -21,7 +36,16 @@ function checkStatus(response) {
  * @param  {object} [options] The options we want to pass to "fetch"
  * @return {object}           An object containing either "data" or "err"
  */
-export default function request(url, options) {
+export default function request(url, options={}) {
+
+  //get请求
+  if(!options.method){
+    url+=`?${qs.stringify(options.params)}`
+  }
+
+  //处理头部
+  handleHeaders(options)
+
   return fetch(url, options)
     .then(checkStatus)
     .then(parseJSON)
