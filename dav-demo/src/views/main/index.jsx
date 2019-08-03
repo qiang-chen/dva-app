@@ -18,10 +18,10 @@ export default class Main extends Component {
                     <RouteView children={this.props.children}></RouteView>
                 </main>
                 <footer>
-                    <NavLink to="/main/home">
+                    <NavLink to="/main/home" activeClassName={style.active}>
                         <span>首页</span>
                     </NavLink>
-                    <NavLink to="/main/list">
+                    <NavLink to="/main/list" activeClassName={style.active}>
                         <span>列表</span>
                     </NavLink>
                 </footer>
